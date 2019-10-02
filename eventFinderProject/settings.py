@@ -35,6 +35,8 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
+    'rest_framework.authtoken',
+    'rest_framework',
     'crispy_forms',
     'users.apps.UsersConfig',
     'eventFinderApp.apps.EventfinderappConfig',
@@ -44,11 +46,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-LOGIN_REDIRECT_URL = '/event-finder'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -88,7 +97,7 @@ WSGI_APPLICATION = 'eventFinderProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'eventproject',
+        'NAME': 'eventproject2',
         'USER': 'postgres',
         'PASSWORD': 'Rastybear84',
         'HOST': 'localhost',
@@ -133,6 +142,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_REDIRECT_URL = '/event-finder'
+LOGOUT_REDIRECT_URL = '/event-finder'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
